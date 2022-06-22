@@ -1,0 +1,584 @@
+REM DECLARE THE WINDOW ALL 9 BUTTONS 
+
+declare BBjAPI api!
+declare BBjSysGui sysgui!
+declare BBjTopLevelWindow myWindow!
+declare BBjButton myButton1!
+declare BBjButton myButton2!
+declare BBjButton myButton3!
+declare BBjButton myButton4!
+declare BBjButton myButton5!
+declare BBjButton myButton6! 
+declare BBjButton myButton7!
+declare BBjButton myButton8!
+declare BBjButton myButton9!
+
+
+
+api! = BBjAPI()
+sysgui! = api!.openSysGui("X0")
+
+change = 2
+
+REM  declare the position and size of the Window
+myWindow! = sysgui!.addWindow(10,10,640,480,"Tic-Tac-Toe")
+REM  declare the position and size of the text of player
+txt1! = myWindow!.addStaticText(401, 250,20, 70, 500, "player A: X")
+txt2! = myWindow!.addStaticText(402, 250,50, 70, 500, "player B: O")
+REM  declare the position and size of the buttons
+myButton1! = myWindow!.addButton(101,100,100,100,100," ")
+myButton2! = myWindow!.addButton(102,200,100,100,100," ")
+myButton3! = myWindow!.addButton(103,300,100,100,100," ")
+myButton4! = myWindow!.addButton(104,100,200,100,100," ")
+myButton5! = myWindow!.addButton(105,200,200,100,100," ")
+myButton6! = myWindow!.addButton(106,300,200,100,100," ")
+myButton7! = myWindow!.addButton(107,100,300,100,100," ")
+myButton8! = myWindow!.addButton(108,200,300,100,100," ")
+myButton9! = myWindow!.addButton(109,300,300,100,100," ")
+
+myWindow!.setCallback(BBjAPI.ON_CLOSE,"byebye")
+REM callback and disable process the button
+myButton1!.setCallback(BBjAPI.ON_BUTTON_PUSH,"pushed1")
+myButton1!.setDisableOnClick(1)
+myButton2!.setCallback(BBjAPI.ON_BUTTON_PUSH,"pushed2")
+myButton2!.setDisableOnClick(1)
+myButton3!.setCallback(BBjAPI.ON_BUTTON_PUSH,"pushed3")
+myButton3!.setDisableOnClick(1)
+myButton4!.setCallback(BBjAPI.ON_BUTTON_PUSH,"pushed4")
+myButton4!.setDisableOnClick(1)
+myButton5!.setCallback(BBjAPI.ON_BUTTON_PUSH,"pushed5")
+myButton5!.setDisableOnClick(1)
+myButton6!.setCallback(BBjAPI.ON_BUTTON_PUSH,"pushed6")
+myButton6!.setDisableOnClick(1)
+myButton7!.setCallback(BBjAPI.ON_BUTTON_PUSH,"pushed7")
+myButton7!.setDisableOnClick(1)
+myButton8!.setCallback(BBjAPI.ON_BUTTON_PUSH,"pushed8")
+myButton8!.setDisableOnClick(1)
+myButton9!.setCallback(BBjAPI.ON_BUTTON_PUSH,"pushed9")
+myButton9!.setDisableOnClick(1)
+
+process_events
+
+pushed1:
+	a=MOD(change,2)
+	IF a=0 then
+		myButton1!.setText("X")
+		p=2
+		text1!=myWindow!.addStaticText(1,250,500,70,500,"Player"+str(p)+"s Turn")
+		change=change+1
+		b1$=myButton1!.getText()
+
+         IF b1$=b2$ AND b2$=b3$ AND b1$=b3$ THEN
+          
+              text21!=myWindow!.addStaticText(502,500,200,90,500, "Player 1 Is Winner")
+              REM player 1 
+              myButton1!.setBackColor(BBjColor.RED)
+              myButton2!.setBackColor(BBjColor.RED)
+              myButton3!.setBackColor(BBjColor.RED)
+          endif
+          IF b1$=b5$ AND b5$=b9$ AND b1$=b9$ THEN
+           
+              text22!=myWindow!.addStaticText(503,500,200,90,500, "Player 1 Is Winner")
+              myButton1!.setBackColor(BBjColor.RED)
+              myButton5!.setBackColor(BBjColor.RED)
+              myButton9!.setBackColor(BBjColor.RED)
+          endif
+          IF b1$=b4$ AND b4$=b7$ AND b1$=b7$ THEN
+           
+              text23!=myWindow!.addStaticText(504,500,200,90,500, "Player 1 Is Winner")
+              myButton1!.setBackColor(BBjColor.RED)
+              myButton4!.setBackColor(BBjColor.RED)
+              myButton7!.setBackColor(BBjColor.RED)
+          endif
+		
+
+	else
+		myButton1!.setText("O")
+		p=1
+		text2!=myWindow!.addStaticText(2,250,500,70,500,"Player"+str(p)+"s Turn")
+		change=change+1
+		b1$=myButton1!.getText()
+
+         IF b1$=b2$ AND b2$=b3$ AND b1$=b3$ THEN
+          
+              text24!=myWindow!.addStaticText(505,500,200,90,500, "Player 2 Is Winner")
+              myButton1!.setBackColor(BBjColor.BLUE)
+              myButton2!.setBackColor(BBjColor.BLUE)
+              myButton3!.setBackColor(BBjColor.BLUE)
+          endif
+          IF b1$=b5$ AND b5$=b9$ AND b1$=b9$ THEN
+           
+              text25!=myWindow!.addStaticText(506,500,200,90,500, "Player 2 Is Winner")
+              myButton1!.setBackColor(BBjColor.BLUE)
+              myButton5!.setBackColor(BBjColor.BLUE)
+              myButton9!.setBackColor(BBjColor.BLUE)
+          endif
+          IF b1$=b4$ AND b4$=b7$ AND b1$=b7$ THEN
+           
+              text26!=myWindow!.addStaticText(507,500,200,90,500, "Player 2 Is Winner")
+              myButton1!.setBackColor(BBjColor.BLUE)
+              myButton4!.setBackColor(BBjColor.BLUE)
+              myButton7!.setBackColor(BBjColor.BLUE)
+          endif
+		
+	endif
+return
+	
+pushed2:                                                      
+	a=MOD(change,2)
+	IF a=0 then
+		myButton2!.setText("X")
+		p=2
+		text3!=myWindow!.addStaticText(3,250,500,70,500,"Player"+str(p)+"s Turn")
+		change=change+1
+		b2$=myButton2!.getText()
+		IF b1$=b2$ AND b2$=b3$ AND b1$=b3$ THEN
+		 
+              text27!=myWindow!.addStaticText(508,500,200,90,500, "Player 1 Is Winner")
+              myButton1!.setBackColor(BBjColor.RED)
+              myButton2!.setBackColor(BBjColor.RED)
+              myButton3!.setBackColor(BBjColor.RED)
+          endif
+          IF b2$=b5$ AND b5$=b8$ AND b2$=b8$ THEN
+           
+              text28!=myWindow!.addStaticText(509,500,200,90,500, "Player 1 Is Winner")
+              myButton1!.setBackColor(BBjColor.RED)
+              myButton5!.setBackColor(BBjColor.RED)
+              myButton8!.setBackColor(BBjColor.RED)
+          endif
+		
+		
+	else
+		myButton2!.setText("O")
+		p=1
+		text4!=myWindow!.addStaticText(4,250,500,70,500,"Player"+str(p)+"s Turn")
+		change=change+1
+		b2$=myButton2!.getText()
+		IF b1$=b2$ AND b2$=b3$ AND b1$=b3$ THEN
+		 
+              text29!=myWindow!.addStaticText(510,500,200,90,500, "Player 2 Is Winner")
+              myButton1!.setBackColor(BBjColor.BLUE)
+              myButton2!.setBackColor(BBjColor.BLUE)
+              myButton3!.setBackColor(BBjColor.BLUE)
+          endif
+          IF b2$=b5$ AND b5$=b8$ AND b2$=b8$ THEN
+           
+              text30!=myWindow!.addStaticText(511,500,200,90,500, "Player 2 Is Winner")
+              myButton2!.setBackColor(BBjColor.BLUE)
+              myButton5!.setBackColor(BBjColor.BLUE)
+              myButton8!.setBackColor(BBjColor.BLUE)
+          endif
+		
+		
+	endif
+return
+	
+pushed3:
+	a=MOD(change,2)
+	IF a=0 then
+		myButton3!.setText("X")
+		p=2
+		text5!=myWindow!.addStaticText(5,250,500,70,500,"Player"+str(p)+"s Turn")
+		change=change+1
+		b3$=myButton3!.getText()
+		IF b1$=b2$ AND b2$=b3$ AND b1$=b3$ THEN
+		 
+              text31!=myWindow!.addStaticText(512,500,200,90,500, "Player 1 Is Winner")
+              myButton1!.setBackColor(BBjColor.RED)
+              myButton2!.setBackColor(BBjColor.RED)
+              myButton3!.setBackColor(BBjColor.RED)
+          endif
+          IF b3$=b6$ AND b6$=b9$ AND b3$=b9$ THEN
+           
+              text32!=myWindow!.addStaticText(513,500,200,90,500, "Player 1 Is Winner")
+              myButton3!.setBackColor(BBjColor.RED)
+              myButton6!.setBackColor(BBjColor.RED)
+              myButton9!.setBackColor(BBjColor.RED)
+          endif
+          IF b3$=b5$ AND b5$=b7$ AND b3$=b7$ THEN
+           
+              text33!=myWindow!.addStaticText(514,500,200,90,500, "Player 1 Is Winner")
+              myButton3!.setBackColor(BBjColor.RED)
+              myButton5!.setBackColor(BBjColor.RED)
+              myButton7!.setBackColor(BBjColor.RED)
+          endif
+		
+	
+	else
+		myButton3!.setText("O")
+		p=1
+		text6!=myWindow!.addStaticText(6,250,500,70,500,"Player"+str(p)+"s Turn")
+		change=change+1
+		b3$=myButton3!.getText()
+		IF b1$=b2$ AND b2$=b3$ AND b1$=b3$ THEN
+		 
+              text34!=myWindow!.addStaticText(515,500,200,90,500, "Player 2 Is Winner")
+              myButton1!.setBackColor(BBjColor.BLUE)
+              myButton2!.setBackColor(BBjColor.BLUE)
+              myButton3!.setBackColor(BBjColor.BLUE)
+          endif
+          IF b3$=b6$ AND b6$=b9$ AND b3$=b9$ THEN
+           
+              text35!=myWindow!.addStaticText(516,500,200,90,500, "Player 2 Is Winner")
+              myButton3!.setBackColor(BBjColor.BLUE)
+              myButton6!.setBackColor(BBjColor.BLUE)
+              myButton9!.setBackColor(BBjColor.BLUE)
+          endif
+          IF b3$=b5$ AND b5$=b7$ AND b3$=b7$ THEN
+           
+              text36!=myWindow!.addStaticText(517,500,200,90,500, "Player 2 Is Winner")
+              myButton3!.setBackColor(BBjColor.BLUE)
+              myButton5!.setBackColor(BBjColor.BLUE)
+              myButton7!.setBackColor(BBjColor.BLUE)
+          endif
+	endif
+return
+	
+	
+pushed4:
+	a=MOD(change,2)
+	IF a=0 then
+		myButton4!.setText("X")
+		p=2
+		text7!=myWindow!.addStaticText(7,250,500,70,500,"Player"+str(p)+"s Turn")
+		change=change+1
+		b4$=myButton4!.getText()
+		IF b1$=b4$ AND b4$=b7$ AND b1$=b7$ THEN
+		 
+              text37!=myWindow!.addStaticText(518,500,200,90,500, "Player 1 Is Winner")
+              myButton1!.setBackColor(BBjColor.RED)
+              myButton4!.setBackColor(BBjColor.RED)
+              myButton7!.setBackColor(BBjColor.RED)
+          endif
+          IF b4$=b5$ AND b5$=b6$ AND b4$=b6$ THEN
+           
+              text38!=myWindow!.addStaticText(519,500,200,90,500, "Player 1 Is Winner")
+              myButton4!.setBackColor(BBjColor.RED)
+              myButton5!.setBackColor(BBjColor.RED)
+              myButton6!.setBackColor(BBjColor.RED)
+          endif
+          
+	
+	else
+		myButton4!.setText("O")
+		p=1
+		text8!=myWindow!.addStaticText(8,250,500,70,500,"Player"+str(p)+"s Turn")
+		change=change+1
+		b4$=myButton4!.getText()
+		IF b1$=b4$ AND b4$=b7$ AND b4$=b7$ THEN
+		 
+              text39!=myWindow!.addStaticText(520,500,200,90,500, "Player 2 Is Winner")
+              myButton1!.setBackColor(BBjColor.BLUE)
+              myButton4!.setBackColor(BBjColor.BLUE)
+              myButton7!.setBackColor(BBjColor.BLUE)
+          endif
+          IF b4$=b5$ AND b5$=b6$ AND b4$=b6$ THEN
+           
+              text40!=myWindow!.addStaticText(521,500,200,90,500, "Player 2 Is Winner")
+              myButton4!.setBackColor(BBjColor.BLUE)
+              myButton5!.setBackColor(BBjColor.BLUE)
+              myButton6!.setBackColor(BBjColor.BLUE)
+          endif
+		
+	endif
+return
+	
+pushed5:
+	a=MOD(change,2)
+	IF a=0 then
+		myButton5!.setText("X")
+		p=2
+		text9!=myWindow!.addStaticText(9,250,500,70,500,"Player"+str(p)+"s Turn")
+		change=change+1
+		b5$=myButton5!.getText()
+		IF b1$=b5$ AND b5$=b9$ AND b1$=b9$ THEN
+		 
+              text41!=myWindow!.addStaticText(522,500,200,90,500, "Player 1 Is Winner")
+              myButton1!.setBackColor(BBjColor.RED)
+              myButton5!.setBackColor(BBjColor.RED)
+              myButton9!.setBackColor(BBjColor.RED)
+          endif
+          IF b3$=b5$ AND b5$=b7$ AND b3$=b7$ THEN
+           
+              text42!=myWindow!.addStaticText(523,500,200,90,500, "Player 1 Is Winner")
+              myButton3!.setBackColor(BBjColor.RED)
+              myButton5!.setBackColor(BBjColor.RED)
+              myButton7!.setBackColor(BBjColor.RED)
+          endif
+          IF b2$=b5$ AND b5$=b8$ AND b2$=b8$ THEN
+           
+              text43!=myWindow!.addStaticText(524,500,200,90,500, "Player 1 Is Winner")
+              myButton2!.setBackColor(BBjColor.RED)
+              myButton5!.setBackColor(BBjColor.RED)
+              myButton8!.setBackColor(BBjColor.RED)
+          endif
+          IF b4$=b5$ AND b5$=b6$ AND b4$=b6$ THEN
+           
+              text44!=myWindow!.addStaticText(525,500,200,90,500, "Player 1 Is Winner")
+              myButton4!.setBackColor(BBjColor.RED)
+              myButton5!.setBackColor(BBjColor.RED)
+              myButton6!.setBackColor(BBjColor.RED)
+          endif
+		
+	
+	else
+		myButton5!.setText("O")
+		p=1
+		text10!=myWindow!.addStaticText(10,250,500,70,500,"Player"+str(p)+"s Turn")
+		change=change+1
+		b5$=myButton5!.getText()
+		IF b1$=b5$ AND b5$=b9$ AND b1$=b9$ THEN
+		 
+              text41!=myWindow!.addStaticText(522,500,200,90,500, "Player 2 Is Winner")
+              myButton1!.setBackColor(BBjColor.BLUE)
+              myButton5!.setBackColor(BBjColor.BLUE)
+              myButton9!.setBackColor(BBjColor.BLUE)
+          endif
+          IF b3$=b5$ AND b5$=b7$ AND b3$=b7$ THEN
+           
+              text42!=myWindow!.addStaticText(523,500,200,90,500, "Player 2 Is Winner")
+              myButton3!.setBackColor(BBjColor.BLUE)
+              myButton5!.setBackColor(BBjColor.BLUE)
+              myButton7!.setBackColor(BBjColor.BLUE)
+          endif
+          IF b2$=b5$ AND b5$=b8$ AND b2$=b8$ THEN
+           
+              text43!=myWindow!.addStaticText(524,500,200,90,500, "Player 2 Is Winner")
+              myButton2!.setBackColor(BBjColor.BLUE)
+              myButton5!.setBackColor(BBjColor.BLUE)
+              myButton8!.setBackColor(BBjColor.BLUE)
+          endif
+          IF b4$=b5$ AND b5$=b6$ AND b4$=b6$ THEN
+           
+              text44!=myWindow!.addStaticText(525,500,200,90,500, "Player 2 Is Winner")
+              myButton4!.setBackColor(BBjColor.BLUE)
+              myButton5!.setBackColor(BBjColor.BLUE)
+              myButton6!.setBackColor(BBjColor.BLUE)
+          endif
+		
+	endif
+return
+	
+pushed6:
+	a=MOD(change,2)
+	IF a=0 then
+		myButton6!.setText("X")
+		p=2
+		text11!=myWindow!.addStaticText(11,250,500,70,500,"Player"+str(p)+"s Turn")
+		change=change+1
+		b6$=myButton6!.getText()
+		IF b3$=b6$ AND b6$=b9$ AND b3$=b9$ THEN
+		 
+              text49!=myWindow!.addStaticText(530,500,200,90,500, "Player 1 Is Winner")
+              myButton3!.setBackColor(BBjColor.RED)
+              myButton6!.setBackColor(BBjColor.RED)
+              myButton9!.setBackColor(BBjColor.RED)
+          endif
+          IF b4$=b5$ AND b5$=b6$ AND b4$=b6$ THEN
+           
+              text50!=myWindow!.addStaticText(531,500,200,90,500, "Player 1 Is Winner")
+              myButton4!.setBackColor(BBjColor.RED)
+              myButton5!.setBackColor(BBjColor.RED)
+              myButton6!.setBackColor(BBjColor.RED)
+          endif
+		
+	
+	else
+		myButton6!.setText("O")
+		p=1
+		text12!=myWindow!.addStaticText(12,250,500,70,500,"Player"+str(p)+"s Turn")
+		change=change+1
+		b6$=myButton6!.getText()
+		IF b3$=b6$ AND b6$=b9$ AND b3$=b9$ THEN
+		 
+              text51!=myWindow!.addStaticText(532,500,200,90,500, "Player 2 Is Winner")
+              myButton3!.setBackColor(BBjColor.BLUE)
+              myButton6!.setBackColor(BBjColor.BLUE)
+              myButton9!.setBackColor(BBjColor.BLUE)
+          endif
+          IF b4$=b5$ AND b5$=b6$ AND b4$=b6$ THEN
+           
+              text52!=myWindow!.addStaticText(533,500,200,90,500, "Player 2 Is Winner")
+              myButton4!.setBackColor(BBjColor.BLUE)
+              myButton5!.setBackColor(BBjColor.BLUE)
+              myButton6!.setBackColor(BBjColor.BLUE)
+          endif
+		
+	endif
+return
+	
+pushed7:
+	a=MOD(change,2)
+	IF a=0 then
+		myButton7!.setText("X")
+		p=2
+		text13!=myWindow!.addStaticText(13,250,500,70,500,"Player"+str(p)+"s Turn")
+		change=change+1
+		b7$=myButton7!.getText()
+		IF b1$=b4$ AND b4$=b7$ AND b1$=b7$ THEN
+		 
+              text53!=myWindow!.addStaticText(534,500,200,90,500, "Player 1 Is Winner")
+              myButton1!.setBackColor(BBjColor.RED)
+              myButton4!.setBackColor(BBjColor.RED)
+              myButton7!.setBackColor(BBjColor.RED)
+          endif
+          IF b7$=b8$ AND b8$=b9$ AND b7$=b9$ THEN
+           
+              text54!=myWindow!.addStaticText(535,500,200,90,500, "Player 1 Is Winner")
+              myButton7!.setBackColor(BBjColor.RED)
+              myButton8!.setBackColor(BBjColor.RED)
+              myButton9!.setBackColor(BBjColor.RED)
+          endif
+           IF b7$=b5$ AND b5$=b3$ AND b7$=b3$ THEN
+            
+              text55!=myWindow!.addStaticText(536,500,200,90,500, "Player 1 Is Winner")
+              myButton7!.setBackColor(BBjColor.RED)
+              myButton5!.setBackColor(BBjColor.RED)
+              myButton3!.setBackColor(BBjColor.RED)
+          endif
+		
+	
+	else
+		myButton7!.setText("O")
+		p=1
+		text14!=myWindow!.addStaticText(14,250,500,70,500,"Player"+str(p)+"s Turn")
+		change=change+1
+		b7$=myButton7!.getText()
+		IF b1$=b4$ AND b4$=b7$ AND b1$=b7$ THEN
+		 
+              text56!=myWindow!.addStaticText(537,500,200,90,500, "Player 2 Is Winner")
+              myButton1!.setBackColor(BBjColor.BLUE)
+              myButton4!.setBackColor(BBjColor.BLUE)
+              myButton7!.setBackColor(BBjColor.BLUE)
+          endif
+          IF b7$=b8$ AND b8$=b9$ AND b7$=b9$ THEN
+           
+              text57!=myWindow!.addStaticText(538,500,200,90,500, "Player 2 Is Winner")
+              myButton7!.setBackColor(BBjColor.BLUE)
+              myButton8!.setBackColor(BBjColor.BLUE)
+              myButton9!.setBackColor(BBjColor.BLUE)
+          endif
+           IF b7$=b5$ AND b5$=b3$ AND b7$=b3$ THEN
+            
+              text58!=myWindow!.addStaticText(539,500,200,90,500, "Player 2 Is Winner")
+              myButton7!.setBackColor(BBjColor.BLUE)
+              myButton5!.setBackColor(BBjColor.BLUE)
+              myButton3!.setBackColor(BBjColor.BLUE)
+          endif
+		
+	endif
+return
+	
+pushed8:
+	a=MOD(change,2)
+	IF a=0 then
+		myButton8!.setText("X")
+		text15!=myWindow!.addStaticText(15,250,500,70,500,"Player"+str(p)+"s Turn")
+		change=change+1
+		p=2
+		b8$=myButton8!.getText()
+		IF b7$=b8$ AND b8$=b9$ AND b7$=b9$ THEN
+		 
+              text59!=myWindow!.addStaticText(540,500,200,90,500, "Player 1 Is Winner")
+              myButton7!.setBackColor(BBjColor.RED)
+              myButton8!.setBackColor(BBjColor.RED)
+              myButton9!.setBackColor(BBjColor.RED)
+          endif
+          IF b2$=b5$ AND b5$=b8$ AND b2$=b8$ THEN
+           
+              text60!=myWindow!.addStaticText(541,500,200,90,500, "Player 1 Is Winner")
+              myButton2!.setBackColor(BBjColor.RED)
+              myButton5!.setBackColor(BBjColor.RED)
+              myButton8!.setBackColor(BBjColor.RED)
+          endif
+		
+		
+	
+	else
+		myButton8!.setText("O")
+		p=1
+		text16!=myWindow!.addStaticText(16,250,500,70,500,"Player"+str(p)+"s Turn")
+		change=change+1
+		b8$=myButton8!.getText()
+		IF b7$=b8$ AND b8$=b9$ AND b7$=b9$ THEN
+		 
+              text59!=myWindow!.addStaticText(540,500,200,90,500, "Player 2 Is Winner")
+              myButton7!.setBackColor(BBjColor.BLUE)
+              myButton8!.setBackColor(BBjColor.BLUE)
+              myButton9!.setBackColor(BBjColor.BLUE)
+          endif
+          IF b2$=b5$ AND b5$=b8$ AND b2$=b8$ THEN
+           
+              text60!=myWindow!.addStaticText(541,500,200,90,500, "Player 2 Is Winner")
+              myButton2!.setBackColor(BBjColor.BLUE)
+              myButton5!.setBackColor(BBjColor.BLUE)
+              myButton8!.setBackColor(BBjColor.BLUE)
+          endif
+		
+	endif
+return
+	
+pushed9:
+	a=MOD(change,2)
+	IF a=0 then
+		myButton9!.setText("X")
+		p=2
+		text17!=myWindow!.addStaticText(17,250,500,70,500,"Player"+str(p)+"s Turn")
+		change=change+1
+		b9$=myButton9!.getText()
+		IF b3$=b6$ AND b6$=b9$ AND b3$=b9$ THEN
+		 
+              text63!=myWindow!.addStaticText(544,500,200,90,500, "Player 1 Is Winner")
+              myButton3!.setBackColor(BBjColor.RED)
+              myButton6!.setBackColor(BBjColor.RED)
+              myButton9!.setBackColor(BBjColor.RED)
+          endif
+          IF b7$=b8$ AND b8$=b9$ AND b7$=b9$ THEN
+           
+              text64!=myWindow!.addStaticText(545,500,200,90,500, "Player 1 Is Winner")
+              myButton7!.setBackColor(BBjColor.RED)
+              myButton8!.setBackColor(BBjColor.RED)
+              myButton9!.setBackColor(BBjColor.RED)
+          endif
+          IF b1$=b5$ AND b5$=b9$ AND b1$=b9$ THEN
+           
+              text65!=myWindow!.addStaticText(546,500,200,90,500, "Player 1 Is Winner")
+              myButton1!.setBackColor(BBjColor.RED)
+              myButton5!.setBackColor(BBjColor.RED)
+              myButton9!.setBackColor(BBjColor.RED)
+          endif
+		
+	
+	else
+		myButton9!.setText("O")
+		p=1
+		text18!=myWindow!.addStaticText(18,250,500,70,500,"Player"+str(p)+"s Turn")
+		change=change+1
+		b9$=myButton9!.getText()
+		IF b3$=b6$ AND b6$=b9$ AND b3$=b9$ THEN
+		 
+              text63!=myWindow!.addStaticText(544,500,200,90,500, "Player 2 Is Winner")
+              myButton3!.setBackColor(BBjColor.BLUE)
+              myButton6!.setBackColor(BBjColor.BLUE)
+              myButton9!.setBackColor(BBjColor.BLUE)
+          endif
+          IF b7$=b8$ AND b8$=b9$ AND b7$=b9$ THEN
+           
+              text64!=myWindow!.addStaticText(545,500,200,90,500, "Player 2 Is Winner")
+              myButton7!.setBackColor(BBjColor.BLUE)
+              myButton8!.setBackColor(BBjColor.BLUE)
+              myButton9!.setBackColor(BBjColor.BLUE)
+          endif
+          IF b1$=b5$ AND b5$=b9$ AND b1$=b9$ THEN
+           
+              text65!=myWindow!.addStaticText(546,500,200,90,500, "Player 2 Is Winner")
+              myButton1!.setBackColor(BBjColor.BLUE)
+              myButton5!.setBackColor(BBjColor.BLUE)
+              myButton9!.setBackColor(BBjColor.BLUE)
+          endif
+		
+	endif
+return
+
+byebye:
+    release
